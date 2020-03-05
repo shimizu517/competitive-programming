@@ -1,0 +1,23 @@
+n, k = map(int, input().split())
+#print("n={}, k={}".format(n,k))
+
+h = input().split()
+#print(h)
+
+hs = sorted(h)
+#print(hs)
+
+#必殺技によって倒したあとのモンスターの数
+if n >= k: 
+  num_mon = n - k 
+else:
+  num_mon = 0
+#print(num_mon)
+
+#攻撃するモンスターの体力のリスト
+mon_att = hs[0:num_mon]
+#print(mon_att)
+
+#攻撃する回数の最小値
+min_att = sum(map(int, mon_att))
+print(min_att)
