@@ -1,0 +1,12 @@
+#while文による回答
+H = int(input())
+
+attack_num = 0
+n = 0
+
+while H >= 1:
+  n += 1
+  attack_num += 2 ** (n -1)
+  H //= 2
+
+print(attack_num)
