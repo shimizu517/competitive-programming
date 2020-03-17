@@ -1,0 +1,13 @@
+#自分で考えたもの①
+N=int(input())
+A=list(map(int, input().split()))
+B=[0] * N
+
+for i in range(N):
+  while A[i] % 2 == 0:
+    A[i] /= 2
+    B[i] += 1
+
+print(min(B)) if min(B) > 0 else print(0)
+
+#自分で考えたもの②
