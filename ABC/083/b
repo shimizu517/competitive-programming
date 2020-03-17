@@ -1,0 +1,11 @@
+N,A,B=map(int, input().split())
+
+def f(n,a,b):
+  count = 0
+  
+  for i in range(1, n+1):
+    if a<=sum(map(int,str(i))) and sum(map(int,str(i)))<=b:
+      count += i 
+  return count
+
+print(f(N,A,B))

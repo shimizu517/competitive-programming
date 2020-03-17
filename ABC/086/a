@@ -1,0 +1,10 @@
+a,b=map(int, input().split())
+
+def judge(c,d):
+#あまりの計算は%
+  if c*d%2 == 1:
+    print("Odd")
+  else:
+    print("Even")
+
+judge(a,b)

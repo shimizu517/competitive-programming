@@ -1,0 +1,15 @@
+A=int(input())
+B=int(input())
+C=int(input())
+X=int(input())
+
+def f(a,b,c,x):
+  count = 0
+  for i in range(a+1):
+    for j in range(b+1):
+      for k in range(c+1):
+        if 500*i + 100*j + 50*k == x:
+          count += 1
+  print(count)
+
+f(A,B,C,X)
