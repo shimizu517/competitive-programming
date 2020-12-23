@@ -23,7 +23,7 @@ class Heap:
             self._max_heapify(_max_i, last_i)
 
     def _build_max_heap(self):
-        for i in range(math.floor(len(self.l) // 2) - 1, -1, -1):
+        for i in range((len(self.l) - 1) // 2, -1, -1):
             self._max_heapify(i, len(self.l) - 1)
         return self.l
 
