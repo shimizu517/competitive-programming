@@ -26,6 +26,7 @@ class MaxPriorityQueue:
     def __post_init__(self):
         for el in self.s:
             self.assert_key(el)
+        self._build_max_heap()
 
     @staticmethod
     def assert_key(t: T):
@@ -36,6 +37,26 @@ class MaxPriorityQueue:
     def heap_maximum(self):
         return self.s[0]
 
+    def _max_heapify(self, p_i):
+        left_i = p_i * 2 + 1
+        right_i = p_i * 2 + 2
+        if left_i > len(self.s) - 1:
+            return
+
+        max_i = p_i
+        if self.s[left_i].mpq_key > self.s[max_i].mpq_key:
+            max_i = left_i
+        if right_i < len(self.s) and self.s[right_i].mpq_key > self.s[max_i].mpq_key:
+            max_i = right_i
+
+        if max_i != p_i:
+            self.s[max_i], self.s[p_i] = self.s[p_i], self.s[max_i]
+            self._max_heapify(max_i)
+
+    def _build_max_heap(self):
+        for i in range((len(self.s) - 1) // 2, -1, -1):
+            self._max_heapify(i)
+
 
 players: List[Player] = [
     Player(
@@ -45,6 +66,8 @@ players: List[Player] = [
     )
     for _ in range(50)
 ]
-pprint(players)
+
 mpq = MaxPriorityQueue(s=players)
-pprint(mpq.s)
+
+for p in mpq.s:
+    print(p.mpq_key, p)
