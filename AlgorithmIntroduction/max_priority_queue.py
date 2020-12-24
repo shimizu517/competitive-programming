@@ -37,6 +37,13 @@ class MaxPriorityQueue:
     def heap_maximum(self):
         return self.s[0]
 
+    def extract_maximum(self):
+        result = self.s[0]
+        self.s[0] = self.s[len(self.s) - 1]
+        del self.s[len(self.s) - 1]
+        self._max_heapify(0)
+        return result
+
     def _max_heapify(self, p_i):
         left_i = p_i * 2 + 1
         right_i = p_i * 2 + 2
