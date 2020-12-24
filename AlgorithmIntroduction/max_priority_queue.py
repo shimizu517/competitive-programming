@@ -16,9 +16,15 @@ class Player:
         return self.age + self.level
 
 
+@dataclass
+class Human:
+    name: str
+    mpq_key: int
+
+
 T = TypeVar("T")
 
-
+# TODO: MaxPriorityQueueを継承してより具体的なオブジェクト用のmax_priority_queueを作る。例）Person
 @dataclass
 class MaxPriorityQueue:
     s: List[T]
@@ -43,6 +49,20 @@ class MaxPriorityQueue:
         del self.s[len(self.s) - 1]
         self._max_heapify(0)
         return result
+
+    def heap_increase_key(self, i, new_mpq_key):
+        if new_mpq_key < self.s[i].mpq_key:
+            print("new_mpq_key is smaller than current mpq_key. do nothing")
+            return
+        self.s[i].mpq_key = new_mpq_key
+        p_i = (i - 1) // 2
+        while i > 0 and self.s[p_i].mpq_key < self.s[i].mpq_key:
+            self.s[i], self.s[p_i] = self.s[p_i], self.s[i]
+            i = p_i
+            p_i = (p_i - 1) // 2
+
+    def max_heap_insert(self, mpq_key):
+        pass
 
     def _max_heapify(self, p_i):
         left_i = p_i * 2 + 1
