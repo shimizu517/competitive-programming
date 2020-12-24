@@ -22,6 +22,11 @@ class Human:
     mpq_key: int
 
 
+@dataclass
+class Mock:
+    mpq_key: int
+
+
 T = TypeVar("T")
 
 # TODO: MaxPriorityQueueを継承してより具体的なオブジェクト用のmax_priority_queueを作る。例）Person
@@ -50,19 +55,20 @@ class MaxPriorityQueue:
         self._max_heapify(0)
         return result
 
-    def heap_increase_key(self, i, new_mpq_key):
-        if new_mpq_key < self.s[i].mpq_key:
+    def heap_increase_key(self, i, mpq_el):
+        if mpq_el.mpq_key < self.s[i].mpq_key:
             print("new_mpq_key is smaller than current mpq_key. do nothing")
             return
-        self.s[i].mpq_key = new_mpq_key
+        self.s[i].mpq_key = mpq_el.mpq_key
         p_i = (i - 1) // 2
         while i > 0 and self.s[p_i].mpq_key < self.s[i].mpq_key:
             self.s[i], self.s[p_i] = self.s[p_i], self.s[i]
             i = p_i
             p_i = (p_i - 1) // 2
 
-    def max_heap_insert(self, mpq_key):
-        pass
+    def max_heap_insert(self, mpq_el):
+        self.s.append(Mock(mpq_key=float("-inf")))
+        self.heap_increase_key(len(self.s) - 1, mpq_el)
 
     def _max_heapify(self, p_i):
         left_i = p_i * 2 + 1
