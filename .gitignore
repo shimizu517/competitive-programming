@@ -3,4 +3,4 @@
 .python-version
 *__pycache*
 
-*test*
+test.py
