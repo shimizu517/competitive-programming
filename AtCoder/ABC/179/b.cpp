@@ -15,7 +15,7 @@ int main()
 {
   int N;
   cin >> N;
-  vector<vector<int>> d(N, vector<int>(2));
+  vector< vector<int> > d(N, vector<int>(2));
   for (int i = 0; i < N; i++)
   {
     cin >> d[i][0];
