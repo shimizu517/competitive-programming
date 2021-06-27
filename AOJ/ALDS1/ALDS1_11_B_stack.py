@@ -8,15 +8,13 @@ BLACK = 2
 count = 0
 
 
+# あるノードに隣接するすべてのノードを1つずつ見つける
 def get_next(v, adj_l, idx) -> Optional[int]:
     if len(adj_l[v]) <= idx:
         return None
     return adj_l[v][idx]
 
 
-# stackからpopしない！一番上の要素を取得して、BLACKにしない限りpopせず、ずっとtに隣接する頂点の色をチェックし続ける
-# tに隣接する頂点をすべて取得する。while1回につき1つ取得する。すべての隣接する頂点を取得したらやっとBLACKにできる。
-# idx_dict[t]でtに隣接する頂点の何個目まで調べたかを記録しておく。
 def dfs_visit(adj_l, d, f, color, v):
     global count
     stack = deque()
