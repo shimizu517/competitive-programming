@@ -14,10 +14,14 @@ def floyd_warchall(adj_m, V):
         tmp_after = [[INF] * V for _ in range(V)]
         for i in range(V):
             for j in range(V):
-                if tmp[i][k] != INF and tmp[k][j] != INF:
-                    tmp_after[i][j] = min(tmp[i][k] + tmp[k][j], tmp[i][j])
+                if tmp[i][k] == INF or tmp[k][j] == INF:
+                    tmp_after[i][j] = tmp[i][j]
+                    continue
+                if tmp[i][k] + tmp[k][j] < tmp[i][j]:
+                    tmp_after[i][j] = tmp[i][k] + tmp[k][j]
                 else:
                     tmp_after[i][j] = tmp[i][j]
+
         for i in range(V):
             for j in range(V):
                 tmp[i][j] = tmp_after[i][j]
@@ -30,6 +34,7 @@ def floyd_warchall(adj_m, V):
             return
     for i in range(V):
         print(' '.join(rows[i]))
+
 
 def main():
     V, E = map(int, input().split())
