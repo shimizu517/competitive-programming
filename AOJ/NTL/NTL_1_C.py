@@ -1,17 +1,17 @@
 from typing import List
 
 
+def gcd(x, y):
+    if y == 0:
+        return x
+    return gcd(x=y, y=x % y)
+
+
 def multiple_gcd(l: List[int]):
     tmp_gcd = l[0]
     for i in range(1, len(l)):
         tmp_gcd = gcd(x=tmp_gcd, y=l[i])
     return tmp_gcd
-
-
-def gcd(x, y):
-    if y == 0:
-        return x
-    return gcd(x=y, y=x % y)
 
 
 def _lcm(x, y):
