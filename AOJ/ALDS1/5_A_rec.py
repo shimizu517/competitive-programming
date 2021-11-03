@@ -1,12 +1,13 @@
-# TLE
-def solve(i, a, m, n):
+def solve(i, a, m, n, dp):
     if m == 0:
         return True
-    if i >= n:
+    if i >= n or m < 0:
         return False
-    result = solve(i + 1, a, m, n) or solve(i + 1, a, m - a[i], n)
+    if dp[i][m] is not None:
+        return dp[i][m]
+    dp[i][m] = solve(i + 1, a, m, n, dp) or solve(i + 1, a, m - a[i], n, dp)
 
-    return result
+    return dp[i][m]
 
 
 def main():
@@ -15,7 +16,8 @@ def main():
     _ = int(input())
     m = list(map(int, input().split()))
     for _m in m:
-        print('yes' if solve(0, a, _m, n) else 'no')
+        dp = [[None] * 2000 for _ in range(n)]
+        print('yes' if solve(0, a, _m, n, dp) else 'no')
 
 
 main()
