@@ -21,3 +21,16 @@ def main():
 
 
 main()
+
+
+# ↓なにがいかんか分からん
+def solve_rec(a, m, i, n, dp):
+    if m == 0:
+        return True
+    if i >= n or m < 0:
+        return False
+    if dp[m][i] is not None:
+        return dp[m][i]
+    dp[m][i] = solve(a, m, i + 1, n, dp) or solve(a, m - a[i], i + 1, n, dp)
+
+    return dp[m][i]
