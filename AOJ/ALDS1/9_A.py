@@ -34,16 +34,6 @@ class Heap:
     def insert(self, key: int):
         n = Node(key=key)
         self.nodes.append(n)
-        # ヒープ作らないといけないと思っていたがそういうわけではなかった
-        # self.max_heapify(len(self.nodes) - 1)
-
-    def max_heapify(self, idx: int):
-        if idx == 0:
-            return
-        p_id = self.get_parent_idx(idx)
-        if self.nodes[p_id].key < self.nodes[idx].key:
-            self.nodes[p_id], self.nodes[idx] = self.nodes[idx], self.nodes[p_id]
-            self.max_heapify(p_id)
 
     def print(self):
         for idx, n in enumerate(self.nodes):
