@@ -49,23 +49,27 @@ class BinarySearchTree:
 
     def print_inorder(self):
         result = []
+
         def order_by_inorder(node: Node):
             if node.is_nil:
                 return
             order_by_inorder(node=node.left)
             result.append(node)
             order_by_inorder(node=node.right)
+
         order_by_inorder(self.root)
         print(' ' + ' '.join(map(str, result)))
 
     def print_preorder(self):
         result = []
+
         def order_by_preorder(node: Node):
             if node.is_nil:
                 return
             result.append(node)
             order_by_preorder(node=node.left)
             order_by_preorder(node=node.right)
+
         order_by_preorder(self.root)
         print(' ' + ' '.join(map(str, result)))
 
@@ -85,7 +89,9 @@ class BinarySearchTree:
         cls.order_by_preorder(node=node.left, result=result)
         cls.order_by_preorder(node=node.right, result=result)
 
+
 bt = BinarySearchTree()
+
 
 def main():
     readline = stdin.readline
