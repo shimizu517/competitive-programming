@@ -1,30 +1,33 @@
 import heapq
-from typing import List
-
-INF = 10000
 
 
-class Graph:
-    def __init__(self, adj_matrix):
-        self.adj_matrix: List[List[int]] = adj_matrix
+class Prim:
+    INF = 2001
 
-    def mst_prim(self) -> int:
+    def __init__(self):
+        pass
+
+    def execute(self, adj_matrix):
+        q = []
+        d = [self.INF for _ in range(len(adj_matrix))]
+        used = [False for _ in range(len(adj_matrix))]
+        d[0] = 0
+        # (d[key], key)
+        heapq.heappush(q, (0, 0))
         result = 0
-        vertex_count = len(self.adj_matrix)
-        used = [False for _ in range(vertex_count)]
-        Q = []
-        # (weight_to_mst, idx)
-        heapq.heappush(Q, (0, 0))
-        while len(Q) > 0:
-            weight, u_id = heapq.heappop(Q)
-            if used[u_id]:
+
+        while len(q) > 0:
+            _w, u = heapq.heappop(q)
+            if used[u]:
                 continue
-            used[u_id] = True
-            result += weight
-            for idx, w in enumerate(self.adj_matrix[u_id]):
-                if w == -1 or used[idx]:
+            used[u] = True
+            result += _w
+            for idx, weight in enumerate(adj_matrix[u]):
+                if weight == -1:
                     continue
-                heapq.heappush(Q, (w, idx))
+                if weight < d[idx]:
+                    d[idx] = weight
+                    heapq.heappush(q, (weight, idx))
         return result
 
 
@@ -33,8 +36,8 @@ def main():
     adj_matrix = []
     for _ in range(n):
         adj_matrix.append(list(map(int, input().split())))
-    g = Graph(adj_matrix)
-    print(g.mst_prim())
+    p = Prim()
+    print(p.execute(adj_matrix=adj_matrix))
 
 
 main()
