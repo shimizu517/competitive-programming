@@ -23,9 +23,7 @@ class Prim:
             used[u] = True
             result += _w
             for idx, weight in enumerate(adj_matrix[u]):
-                if weight == -1:
-                    continue
-                if weight < d[idx]:
+                if weight != -1 and weight < d[idx]:
                     d[idx] = weight
                     heapq.heappush(q, (weight, idx))
         return result
