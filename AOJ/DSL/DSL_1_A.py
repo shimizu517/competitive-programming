@@ -1,61 +1,54 @@
-from typing import Optional, Dict, Union
+from typing import Union
 
 KeyType = Union[int, str]
 
 __all__ = ['DisjointSet']
 
 
-class Node:
-    def __init__(self, key, rank=0, parent=None):
-        self.key: KeyType = key
-        self.parent: Optional['Node'] = parent
-        self.rank = rank
-
-
-# 利用者はKeyTypeのデータを入れられることだけ知っている
-
 class DisjointSet:
     def __init__(self):
-        self.nodes: Dict[KeyType, Node] = {}
+        self.p = {}
+        self.rank = {}
 
-    def make_set(self, x: KeyType):
-        if x in self.nodes:
-            raise Exception
-        self.nodes[x] = Node(key=x)
+    def is_same(self, x: int, y: int) -> bool:
+        return self.find_set(x) == self.find_set(y)
 
-    def find_set(self, x: KeyType) -> KeyType:
-        xn = self.nodes.get(x)
-        while xn.parent:
-            xn = xn.parent
-        return xn.key
+    def make_set(self, key: int):
+        self.p[key] = key
+        self.rank[key] = 0
 
-    def union(self, x: KeyType, y: KeyType):
-        xroot_node = self.nodes[self.find_set(x)]
-        yroot_node = self.nodes[self.find_set(y)]
-        if self.is_same(x=x, y=y):
+    def unite(self, x: int, y: int):
+        if self.is_same(x, y):
             return
 
-        if xroot_node.rank > yroot_node.rank:
-            yroot_node.parent = xroot_node
+        xr = self.find_set(x)
+        yr = self.find_set(y)
+        if self.rank[xr] < self.rank[yr]:
+            self.p[xr] = yr
+        elif self.rank[yr] < self.rank[xr]:
+            self.p[yr] = xr
         else:
-            xroot_node.parent = yroot_node
-            if xroot_node.rank == yroot_node.rank:
-                yroot_node.rank += 1
+            self.rank[xr] += 1
+            self.p[yr] = xr
 
-    def is_same(self, x: KeyType, y: KeyType):
-        return self.find_set(x) == self.find_set(y)
+    def find_set(self, key: int) -> int:
+        p_key = self.p[key]
+        while p_key != key:
+            key = p_key
+            p_key = self.p[p_key]
+        return key
 
 
 def main():
     n, q = map(int, input().split())
     ds = DisjointSet()
     for i in range(n):
-        ds.make_set(x=i)
+        ds.make_set(i)
 
     for _ in range(q):
         com, x, y = map(int, input().split())
         if com == 0:
-            ds.union(x=x, y=y)
+            ds.unite(x=x, y=y)
         else:
             print(int(ds.is_same(x=x, y=y)))
 
