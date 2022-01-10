@@ -87,6 +87,7 @@ class EightPuzzleIDAStar:
             return False
         tmp: Puzzle
         for i in range(N1):
+            # (sx, sy)はスペースの座標なので、(tx, ty)は現在パネルが置いてあり、移動後スペースとなる座標。
             tx = state.sx + Puzzle.dx[i]
             ty = state.sy + Puzzle.dy[i]
             if tx < 0 or ty < 0 or N1 <= tx or N1 <= ty:
@@ -94,7 +95,14 @@ class EightPuzzleIDAStar:
             if max(prev, i) - min(prev, i) == 2:
                 continue
             tmp = deepcopy(state)
-            state.md -= MDT[tx * N1 + ty]
+            state.md -= MDT[tx * N1 + ty][state.board[tx][ty] - 1]
+            state.md += MDT[state.sx * N1 + state.sy][state.board[tx][ty] - 1]
+            state.board[tx][ty], state.board[state.sx][state.sy] = state.board[state.sx][state.sy], state.board[tx][ty]
+            state.sx, state.sy = tx, ty
+            if self.dfs(depth=depth+1, prev=i, state=state, limit=limit):
+                state.path[depth] = i
+                return True
+            state = tmp
 
 
 def main():
@@ -102,7 +110,7 @@ def main():
     for _ in range(3):
         board.append(list(map(int, input().split())))
     p = Puzzle(board)
-    path = EightPuzzle().execute(p)
+    path = EightPuzzleIDAStar().execute(p)
     print(len(path))
 
 
