@@ -99,7 +99,7 @@ class EightPuzzleIDAStar:
             state.md += MDT[state.sx * N1 + state.sy][state.board[tx][ty] - 1]
             state.board[tx][ty], state.board[state.sx][state.sy] = state.board[state.sx][state.sy], state.board[tx][ty]
             state.sx, state.sy = tx, ty
-            if self.dfs(depth=depth+1, prev=i, state=state, limit=limit):
+            if self.dfs(depth=depth + 1, prev=i, state=state, limit=limit):
                 state.path[depth] = i
                 return True
             state = tmp
