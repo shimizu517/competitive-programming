@@ -6,6 +6,7 @@ import (
 	"os"
 )
 
+// not optimized. you should use q for hashing method.
 func rabinKarp(p, t string, d, q int) {
 	m, n, h := len(p), len(t), 1
 	if n < m {
