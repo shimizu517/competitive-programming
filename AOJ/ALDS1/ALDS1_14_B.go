@@ -35,6 +35,7 @@ func main() {
 	for i := 1; i <= n-m; i++ {
 		th = th*B + uint64(ts[i+m-1]) - uint64(ts[i-1])*bm
 		if th == ph {
+			// fmt.Println(i) だとTLE
 			wr.WriteString(strconv.Itoa(i) + "\n")
 		}
 	}

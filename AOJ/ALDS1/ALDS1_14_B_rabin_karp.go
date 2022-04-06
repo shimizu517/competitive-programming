@@ -3,8 +3,8 @@ package main
 
 import (
 	"bufio"
-	"fmt"
 	"os"
+	"strconv"
 )
 
 const (
@@ -24,6 +24,7 @@ func rabinKarp2(p, t string, d, q int) {
 		ph = (d*ph + int(p[i])) % q
 		th = (d*th + int(t[i])) % q
 	}
+	wr := bufio.NewWriter(os.Stdout)
 
 	for i := 0; i < n-m+1; i++ {
 		// if true, p and t[i:i+m] can be the same.
@@ -35,7 +36,8 @@ func rabinKarp2(p, t string, d, q int) {
 				}
 			}
 			if j == m {
-				fmt.Println(i)
+				//fmt.Println(i)
+				wr.WriteString(strconv.Itoa(i) + "\n")
 			}
 		}
 
@@ -47,6 +49,7 @@ func rabinKarp2(p, t string, d, q int) {
 			}
 		}
 	}
+	wr.Flush()
 }
 
 func main() {
