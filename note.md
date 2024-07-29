@@ -26,6 +26,25 @@ https://en.wikipedia.org/wiki/Interval_scheduling
 ## Weighted
 
 
+# Array manipulation
+
+## Rotate an array
+
+- e.g., [1,2,3,4,5] -> [4,5,1,2,3] by rotating 2 times to the right.
+- Algorithms(https://www.geeksforgeeks.org/complete-guide-on-array-rotations/)
+  - **Rotate one by one**
+    - Time complexity: O(n * d)
+    - Space complexity: O(1)
+  - **Using temporary Array**
+    - Time complexity: O(n)
+    - Space complexity: O(n)
+  - **Juggling Algorithm**
+    - Time complexity: O(n)
+    - Space complexity: O(1)
+  - **The Reversal Algorithm**
+    - Time complexity: O(n)
+    - Space complexity: O(1)
+
 # Knapsack Problems
 
 - Knapsack problems are a family of combinatorial optimization problems. (https://en.wikipedia.org/wiki/Knapsack_problem)
