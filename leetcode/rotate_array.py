@@ -1,6 +1,8 @@
 # From: https://leetcode.com/problems/rotate-array
 # Submission: https://leetcode.com/problems/rotate-array/submissions/1337043768
 
+# Topic: array rotation, rotate array
+
 # References:
 # - https://www.geeksforgeeks.org/complete-guide-on-array-rotations/
 # - https://www.geeksforgeeks.org/program-to-reverse-an-array/
