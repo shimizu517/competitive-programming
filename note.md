@@ -64,11 +64,16 @@ There are some patterns.
 ## Unbounded Knapsack Problem(UKP)
 
 
-# Sliding Window
+# Sliding Window(find min array that meets specific conditions)
 
 - https://www.geeksforgeeks.org/window-sliding-technique/
 - https://www.geeksforgeeks.org/length-of-the-longest-substring-without-repeating-characters/
+- e.g., [minimum_size_subarray_sum](leetcode/minimum_size_subarray_sum.py)
 
+# Maximum diff between two elements in an array
+
+- https://www.geeksforgeeks.org/best-time-to-buy-and-sell-stock/
+- e.g., [best_time_to_buy_and_sell_stock](leetcode/best_time_to_buy_and_sell_stock.py)
 
 # Decision making which algorithm to apply
 
