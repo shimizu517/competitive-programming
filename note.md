@@ -70,10 +70,15 @@ There are some patterns.
 - https://www.geeksforgeeks.org/length-of-the-longest-substring-without-repeating-characters/
 - e.g., [minimum_size_subarray_sum](leetcode/minimum_size_subarray_sum.py)
 
-# Maximum diff between two elements in an array
+## Best time to buy and sell stock, only 1 transaction(Maximum diff between two elements in an array)
 
 - https://www.geeksforgeeks.org/best-time-to-buy-and-sell-stock/
 - e.g., [best_time_to_buy_and_sell_stock](leetcode/best_time_to_buy_and_sell_stock.py)
+
+## Best time to buy and sell stock(multiple transactions, hold at most one share at a time)
+
+- https://www.geeksforgeeks.org/stock-buy-sell/?ref=oin_asr1
+- e.g., [best_time_to_buy_and_sell_stock_ii](leetcode/best_time_to_buy_and_sell_stock_ii.py)
 
 # Decision making which algorithm to apply
 
